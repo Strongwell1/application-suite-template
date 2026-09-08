@@ -1,0 +1,324 @@
+/* ─── Reset / Base ─────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 0.9375rem;
+  background: #f8f9fa;
+  color: #212529;
+}
+
+/* ─── App Shell ─────────────────────────────────────────────────────────────── */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-shell {
+  flex: 1;
+  padding: 1.5rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────────────── */
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.masthead-band {
+  background: #fff;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.masthead {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brand-logo-link {
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  height: 36px;
+  width: auto;
+}
+
+.app-title-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.app-subtitle {
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.environment-pill {
+  display: inline-block;
+  margin-top: 2px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffc107;
+  cursor: default;
+}
+
+.user-menu {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-menu > div {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.user-menu strong {
+  color: #212529;
+}
+
+.user-menu span {
+  color: #6c757d;
+}
+
+/* ─── Nav ───────────────────────────────────────────────────────────────────── */
+
+.nav-band {
+  background: #0d6efd;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.main-nav {
+  display: flex;
+  gap: 0;
+}
+
+.main-nav a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.main-nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.main-nav a.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* ─── Auth Shell ────────────────────────────────────────────────────────────── */
+
+.auth-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+.loading-panel {
+  text-align: center;
+  padding: 2rem;
+  max-width: 400px;
+}
+
+.loading-panel h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.loading-panel p {
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+/* ─── Page Sections ─────────────────────────────────────────────────────────── */
+
+.page-section {
+  padding: 1rem 0;
+}
+
+.page-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.page-header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* ─── Query / Feedback States ───────────────────────────────────────────────── */
+
+.query-state {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.query-state.error {
+  color: #dc3545;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+}
+
+.empty-state h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+/* ─── Spinner ───────────────────────────────────────────────────────────────── */
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid #dee2e6;
+  border-top-color: #0d6efd;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.spinner.small {
+  width: 1rem;
+  height: 1rem;
+  border-width: 2px;
+  margin: 0;
+}
+
+/* ─── Busy Overlay ──────────────────────────────────────────────────────────── */
+
+.busy-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+/* ─── Toast Stack ───────────────────────────────────────────────────────────── */
+
+.toast-stack {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1060;
+  max-width: 360px;
+}
+
+.app-toast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: #212529;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.app-toast.success {
+  background: #198754;
+}
+.app-toast.error {
+  background: #dc3545;
+}
+.app-toast.warning {
+  background: #ffc107;
+  color: #212529;
+}
+
+.app-toast button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.7;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.app-toast button:hover {
+  opacity: 1;
+}

@@ -1,0 +1,11 @@
+/* App-level overrides on top of Bootstrap */
+
+/* Tighten up Bootstrap card spacing */
+.card-body {
+  padding: 1rem;
+}
+
+/* Form label weight */
+.form-label {
+  font-weight: 500;
+}

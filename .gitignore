@@ -1,0 +1,86 @@
+############################
+# OS (Windows + macOS)
+############################
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+############################
+# Node / Vite / React (npm)
+############################
+node_modules/
+dist/
+build/
+.vite/
+coverage/
+
+npm-debug.log*
+*.log
+
+# Intentionally tracked when needed for non-secret frontend configuration.
+#.env
+#.env.local
+#.env.*.local
+
+############################
+# .NET / Rider
+############################
+bin/
+obj/
+TestResults/
+*.user
+*.suo
+*.userosscache
+*.ide.*
+.vs/
+
+# JetBrains IDEs (Rider / WebStorm)
+.idea/
+*.iml
+
+############################
+# Terraform
+############################
+**/.terraform/
+**/.terraform.lock.hcl
+**/*.tfstate
+**/*.tfstate.*
+*.tfplan
+tfplan
+crash.log
+
+############################
+# VS Code (if it ever appears)
+############################
+.vscode/
+
+############################
+# Draw.IO Backups
+############################
+*.drawio.bkp
+
+#########################################
+# Visual Paradigm project backups only
+#########################################
+*.vpp.bak
+*vpp.bak_*
+
+############################
+# Build / Publish output
+############################
+publish/
+out/
+*.pubxml.user
+*.PublishSettings
+
+##########################################
+# Developer-workstation config overrides
+##########################################
+.claude/settings.local.json
+.claude/scheduled_tasks.lock
+
+
+############################
+# AI Reference Material
+############################
+/_dropzone
