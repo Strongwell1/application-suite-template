@@ -47,7 +47,7 @@ Every listed resource is required.
 
 ## Naming
 
-Derive resource names from the authoritative conventions in `INFRA.md`.
+Derive resource names from the authoritative conventions in `/rules/tech/INFRA.md`.
 Do not duplicate those formulas here.
 
 ### Exceptions
@@ -61,6 +61,11 @@ None recorded yet.
 ## Values requiring confirmation
 
 - API Entra audience: `REPLACE_WITH_API_AUDIENCE`
-- SQL administrator login name: `REPLACE_WITH_ADMIN_LOGIN`
-- SQL administrator object ID: `REPLACE_WITH_ADMIN_OBJECT_ID`
-- Allowed developer firewall addresses: `REPLACE_WITH_APPROVED_IP_RANGES`
+
+## SQL firewall rules
+
+| Name | Start IP address | End IP address |
+| --- | --- | --- |
+| Allow Azure services | `0.0.0.0` | `0.0.0.0` |
+| Allow BRI Lumen | `4.4.234.130` | `4.4.234.130` |
+| Allow BRI Spectrum | `35.130.100.137` | `35.130.100.142` |
