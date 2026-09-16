@@ -28,7 +28,6 @@ locals {
   sql_db_name     = var.sql_db_name
   wa_name         = "wa-${var.app_name}-api-${var.env}-${local.hash}"
   swa_name        = "swa-${var.app_name}-spa-${var.env}-${local.hash}"
-  container_name  = "attachments"
   app_environment_name = lookup({
     dev  = "dev"
     uat  = "uat"
@@ -129,8 +128,8 @@ resource "azurerm_storage_account" "storage" {
   tags                     = var.tags
 }
 
-resource "azurerm_storage_container" "attachments" {
-  name                  = local.container_name
+resource "azurerm_storage_container" "application_data" {
+  name                  = var.blob_container_name
   storage_account_id    = azurerm_storage_account.storage.id
   container_access_type = "private"
 }
@@ -169,7 +168,7 @@ resource "azurerm_linux_web_app" "api" {
     "Cors__AllowedOrigins__SpaApp" = "https://${azurerm_static_web_app.swa.default_host_name}"
     "App__SpaBaseUrl"              = "https://${azurerm_static_web_app.swa.default_host_name}"
     "AzureStorage__AccountUrl"     = azurerm_storage_account.storage.primary_blob_endpoint
-    "AzureStorage__ContainerName"  = azurerm_storage_container.attachments.name
+    "AzureStorage__ContainerName"  = azurerm_storage_container.application_data.name
     "AzureStorage__TenantId"       = var.tenant_id
   }
 
@@ -181,7 +180,7 @@ resource "azurerm_linux_web_app" "api" {
 }
 
 resource "azurerm_role_assignment" "blob_contributor" {
-  scope                = "${azurerm_storage_account.storage.id}/blobServices/default/containers/${azurerm_storage_container.attachments.name}"
+  scope                = "${azurerm_storage_account.storage.id}/blobServices/default/containers/${azurerm_storage_container.application_data.name}"
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = azurerm_linux_web_app.api.identity[0].principal_id
 }
@@ -202,5 +201,5 @@ output "AzureStorage__AccountUrl" {
 }
 
 output "AzureStorage__ContainerName" {
-  value = azurerm_storage_container.attachments.name
+  value = azurerm_storage_container.application_data.name
 }

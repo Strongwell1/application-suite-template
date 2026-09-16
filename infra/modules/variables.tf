@@ -30,6 +30,21 @@ variable "storage_account_name" {
   }
 }
 
+variable "blob_container_name" {
+  description = "Application blob container name, shared across environments."
+  type        = string
+
+  validation {
+    condition = (
+      length(var.blob_container_name) >= 3 &&
+      length(var.blob_container_name) <= 63 &&
+      can(regex("^[a-z0-9][a-z0-9-]*[a-z0-9]$", var.blob_container_name)) &&
+      !strcontains(var.blob_container_name, "--")
+    )
+    error_message = "Blob container name must be 3-63 lowercase letters, numbers, or hyphens; start and end with a letter or number; and contain no consecutive hyphens."
+  }
+}
+
 variable "location" {
   type = string
 }
@@ -107,13 +122,13 @@ variable "sql_ltr_yearly_retention" {
 }
 
 variable "sql_prod_max_capacity" {
-  description = "Prod-only max vCores for SQL DB."
+  description = "prod-only max vCores for SQL DB."
   type        = number
   default     = null
 }
 
 variable "sql_prod_max_size_gb" {
-  description = "Prod-only max data size in GB for SQL DB."
+  description = "prod-only max data size in GB for SQL DB."
   type        = number
   default     = 64
 }

@@ -7,10 +7,13 @@ locals {
   app_name             = "REPLACE_WITH_APPLICATION_NAME"
   audience             = "REPLACE_WITH_DEV_API_AUDIENCE"
   storage_account_name = "REPLACE_WITH_DEV_STORAGE_ACCOUNT_NAME"
+  blob_container_name  = "REPLACE_WITH_BLOB_CONTAINER_NAME"
 
   location     = "Central US"
   sql_db_name  = "REPLACE_WITH_DATABASE_NAME"
   asp_sku_name = "B1"
+
+  sql_storage_account_type = "REPLACE_WITH_DEV_SQL_BACKUP_REDUNDANCY"
 }
 
 module "app" {
@@ -22,10 +25,13 @@ module "app" {
   app_name             = local.app_name
   audience             = local.audience
   storage_account_name = local.storage_account_name
+  blob_container_name  = local.blob_container_name
 
   location     = local.location
   sql_db_name  = local.sql_db_name
   asp_sku_name = local.asp_sku_name
+
+  sql_storage_account_type = local.sql_storage_account_type
 
   tags = {
     app = local.app_name

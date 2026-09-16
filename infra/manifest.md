@@ -1,16 +1,21 @@
 # Application infrastructure manifest
 
 This manifest is the per-instantiation source of truth for the values an agent
-needs to configure the OpenTofu infrastructure skeleton. Durable policy,
-naming formulas, validation constraints, and minimum floors belong in
-`INFRA.md`; confirmed choices and exceptions belong here.
+needs to configure the OpenTofu infrastructure skeleton. It also summarizes
+the template's naming conventions and minimum floors. The OpenTofu module is
+the executable authority for derived names and validation constraints.
+
+Every unresolved value uses a `REPLACE_WITH_*` token. This is the only
+placeholder format; searching for `REPLACE_WITH_` finds every value that still
+requires substitution.
 
 ## Application
 
 | Value | Assignment | Notes |
 | --- | --- | --- |
-| Application name | `[application-name]` | Lowercase kebab-case; used in conventional Azure resource names. |
-| SQL database name | `[database-name]` | Logical application database name, conventionally PascalCase. |
+| Application name | `REPLACE_WITH_APPLICATION_NAME` | Lowercase kebab-case; used in conventional Azure resource names. |
+| SQL database name | `REPLACE_WITH_DATABASE_NAME` | Logical application database name, conventionally PascalCase. |
+| Blob container name | `REPLACE_WITH_BLOB_CONTAINER_NAME` | Lowercase DNS-style name shared across environments. |
 | Organization name | `Strongwell` | Used in resource tags. |
 
 ## Environments
@@ -30,16 +35,16 @@ alphanumeric characters. Record the confirmed name for each environment here.
 
 | Environment | Storage account name |
 | --- | --- |
-| `dev` | `[confirm]` |
-| `uat` | `[confirm]` |
-| `prod` | `[confirm]` |
+| `dev` | `REPLACE_WITH_DEV_STORAGE_ACCOUNT_NAME` |
+| `uat` | `REPLACE_WITH_UAT_STORAGE_ACCOUNT_NAME` |
+| `prod` | `REPLACE_WITH_PROD_STORAGE_ACCOUNT_NAME` |
 
 ## SQL behavior
 
 | Environment | Maximum size | Auto-pause | PITR retention | Long-term retention | Backup redundancy |
 | --- | --- | --- | --- | --- | --- |
-| `dev` | 2 GB | 60 minutes | 7 days | disabled | `[confirm]` |
-| `uat` | 2 GB | 60 minutes | 7 days | disabled | `[confirm]` |
+| `dev` | 2 GB | 60 minutes | 7 days | disabled | `REPLACE_WITH_DEV_SQL_BACKUP_REDUNDANCY` |
+| `uat` | 2 GB | 60 minutes | 7 days | disabled | `REPLACE_WITH_UAT_SQL_BACKUP_REDUNDANCY` |
 | `prod` | 64 GB | disabled | 31 days | 13 weekly, 6 monthly, 2 yearly (week 1) | `GeoZone` |
 
 ## Application Resource Inventory
@@ -58,8 +63,27 @@ Every listed resource is required.
 
 ## Naming
 
-Derive resource names from the authoritative conventions in `/rules/tech/INFRA.md`.
-Do not duplicate those formulas here.
+The module derives resource names from the application, environment, and an
+eight-character lowercase hexadecimal hash:
+
+`hash = substr(sha256("<subscription-id>-<environment>"), 0, 8)`
+
+| Resource | Pattern |
+| --- | --- |
+| Resource Group | `rg-app-<application-name>-<environment>` |
+| App Service Plan | `asp-<application-name>-<environment>` |
+| Web App (API) | `wa-<application-name>-api-<environment>-<hash>` |
+| Static Web App (SPA) | `swa-<application-name>-spa-<environment>-<hash>` |
+| SQL Server | `sql-<application-name>-<environment>-<hash>` |
+| SQL Database | Confirmed application value from this manifest |
+| Storage Account | Confirmed environment value from this manifest |
+| Blob Container | Confirmed application value from this manifest |
+
+The hash formula is part of resource identity: changing it can cause OpenTofu
+to propose replacement resources. Storage account names remain explicit
+because Azure requires global uniqueness and limits them to 3-24 lowercase
+alphanumeric characters. If this summary and `infra/modules/main.tf` differ,
+the module describes current behavior and this manifest must be corrected.
 
 ### Exceptions
 
@@ -71,7 +95,11 @@ None recorded yet.
 
 ## Values requiring confirmation
 
-- API Entra audience: `REPLACE_WITH_API_AUDIENCE`
+| Environment | API Entra audience |
+| --- | --- |
+| `dev` | `REPLACE_WITH_DEV_API_AUDIENCE` |
+| `uat` | `REPLACE_WITH_UAT_API_AUDIENCE` |
+| `prod` | `REPLACE_WITH_PROD_API_AUDIENCE` |
 
 ## SQL firewall rules
 
