@@ -83,4 +83,5 @@ out/
 ############################
 # AI Reference Material
 ############################
-/_exchange
+/_exchange/*
+!/_exchange/.gitkeep
