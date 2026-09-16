@@ -23,6 +23,17 @@ Environment names are always lowercase: `dev`, `uat`, and `prod`.
 | `uat` | `06aa107f-ff7e-449e-a4d1-11e8b3585c11` | `7f979b1e-fe00-41ab-9777-31b75c24828f` | `East US 2` | `B1` | `GP_S_Gen5_1` |
 | `prod` | `06aa107f-ff7e-449e-a4d1-11e8b3585c11` | `7f979b1e-fe00-41ab-9777-31b75c24828f` | `East US 2` | `P2v3` | `GP_S_Gen5_2` |
 
+## Storage accounts
+
+Storage account names must be globally unique and contain 3-24 lowercase
+alphanumeric characters. Record the confirmed name for each environment here.
+
+| Environment | Storage account name |
+| --- | --- |
+| `dev` | `[confirm]` |
+| `uat` | `[confirm]` |
+| `prod` | `[confirm]` |
+
 ## SQL behavior
 
 | Environment | Maximum size | Auto-pause | PITR retention | Long-term retention | Backup redundancy |

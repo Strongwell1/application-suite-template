@@ -1,14 +1,14 @@
-# works
-Strongwell Works Suite - Vertically Integrated Manufacturing Suite to compliment NetSuite
+# Application Suite Template
+
+A repository template for developing and maintaining an application suite.
 
 ## Repository Structure
 
 | Folder | Purpose |
-|---|---|
-| `_exchange/` | Gitignored, ephemeral staging area for external/temporary reference material the user drops in for context. The agent ignores it unless directed to look. |
-| `apps/` | Application code with a top-level folder per app. |
-| `changes/` | Each file represents a change specification. |
-| `docs/` | A place to gather relevant documentation without any managed format — totally user-maintained, but git-tracked. |
-| `infra/` | OpenTofu (Terraform-compatible) infrastructure-as-code, one config per environment. |
-| `rules/` | Durable technical and security rules — the conventions this app follows. |
-| `specs/` | Full specification for the application suite. |
+| --- | --- |
+| `_exchange/` | Gitignored handoff area for temporary external material. Agents ignore it unless explicitly directed to use it. |
+| `apps/` | Application code, with one top-level directory per application. |
+| `changes/` | Pending change specifications, a summary log, and an archive of completed changes. |
+| `docs/` | Unstructured, human-maintained reference material. Agents ignore it unless explicitly directed to use it. |
+| `infra/` | OpenTofu infrastructure-as-code for the suite's cloud resources, organized around the `dev`, `uat`, and `prod` environments. |
+| `spec/` | Authoritative source of truth for all application-suite decisions. Its internal structure may evolve. |

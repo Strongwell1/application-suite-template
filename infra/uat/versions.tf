@@ -1,2 +1,14 @@
-# Pins the OpenTofu and Azure provider versions for uat.
+terraform {
+  required_version = ">= 1.5.0"
 
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.0"
+    }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.53"
+    }
+  }
+}
