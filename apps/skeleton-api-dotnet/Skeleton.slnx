@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Skeleton.Api/Skeleton.Api.csproj" />
+  <Project Path="Skeleton.Core.Tests/Skeleton.Core.Tests.csproj" />
+  <Project Path="Skeleton.Core/Skeleton.Core.csproj" />
+</Solution>

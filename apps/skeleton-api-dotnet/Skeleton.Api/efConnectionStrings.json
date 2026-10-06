@@ -1,0 +1,9 @@
+{
+  "Environment": "development",
+  "ConnectionStrings": {
+    "development": "Server=localhost;Database=Skeleton;Integrated Security=true;TrustServerCertificate=True;",
+    "dev": "Server=tcp:your-dev-sql-server.database.windows.net,1433;Initial Catalog=Skeleton;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=\"Active Directory Default\";",
+    "uat": "Server=tcp:your-uat-sql-server.database.windows.net,1433;Initial Catalog=Skeleton;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=\"Active Directory Default\";",
+    "prod": "Server=tcp:your-prod-sql-server.database.windows.net,1433;Initial Catalog=Skeleton;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;Authentication=\"Active Directory Default\";"
+  }
+}

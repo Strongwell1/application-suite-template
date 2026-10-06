@@ -1,0 +1,33 @@
+# top-most EditorConfig file
+root = true
+
+# All files
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# 2-space indent for JS/TS/JSON/HTML/CSS (common for frontend)
+[*.{js,jsx,ts,tsx,json,html,css,scss,md}]
+indent_style = space
+indent_size = 2
+
+# 4-space indent for C# (conventional)
+[*.{cs}]
+indent_style = space
+indent_size = 4
+
+# YAML (CI)
+[*.yml]
+indent_style = space
+indent_size = 2
+
+# Editor settings for IDE metadata files — ignore formatting rules here
+[*.{xml,iml}]
+indent_style = space
+indent_size = 2
+
+# Ignore binary files
+[*.{png,jpg,gif,ico,zip,exe}]
+max_line_length = off
